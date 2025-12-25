@@ -30,16 +30,17 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 ENV APP_ENV=dev
 
-RUN composer install --no-cache --prefer-dist --no-progress
+#RUN composer install --no-cache --prefer-dist --no-progress
 #--no-dev
 #--no-scripts
 #--no-autoloader 
 
-RUN set -eux; \
-    composer dump-autoload --classmap-authoritative --no-dev; \
-    composer dump-env prod; \
-    composer run-script --no-dev post-install-cmd; \
-    chmod +x bin/console; sync;
+#RUN set -eux; \
+#    composer dump-autoload --classmap-authoritative; \
+#    composer dump-env dev; \
+#    composer run-script post-install-cmd; \
+#    chmod +x bin/console; sync;
+RUN composer install
 
 RUN bin/console cache:clear --env=prod
 RUN bin/console asset-map:compile --env=prod
