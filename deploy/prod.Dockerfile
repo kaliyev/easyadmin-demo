@@ -28,7 +28,7 @@ RUN chown -R www-data:www-data var
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-ENV APP_ENV=prod
+ENV APP_ENV=dev
 
 RUN composer install --no-cache --prefer-dist --no-progress
 #--no-dev
